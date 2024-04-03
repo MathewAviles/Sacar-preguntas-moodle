@@ -1,0 +1,78 @@
+var preguntasYRespuestas = [
+  
+{
+        pregunta: '¿La dignidad es uno de los fundamentos de los derechos humanos?',
+        respuestaCorrecta: 'Sí, se traduce en que somos fines (sujetos) y no medios (objetos) para los fines de otras personas.'
+    },
+,
+    {
+        pregunta: '¿Las migraciones, voluntarias o no, son una situación nueva?',
+        respuestaCorrecta: 'Falso.'
+    },
+,
+    {
+        pregunta: '¿Los estereotipos tienen siempre una carga negativa?',
+        respuestaCorrecta: 'Falso.'
+    },
+,
+    {
+        pregunta: '¿Qué conceptos tienen una estrecha relación con la autoestima?',
+        respuestaCorrecta: 'La autoimagen (la forma como percibimos a nuestra persona) y el autoconcepto (la forma como nos definimos).'
+    },
+,
+    {
+        pregunta: '¿Qué es la identidad?',
+        respuestaCorrecta: 'Es el conjunto de rasgos y aspectos que dan a cada persona determinadas características e individualidad que la diferencian de otras.'
+    },
+,
+    {
+        pregunta: '¿Quién fue la primera mujer en Latinoamérica que en 1924 ejerció el derecho al voto?',
+        respuestaCorrecta: 'Matilde Hidalgo Navarro.'
+    },
+,
+    {
+        pregunta: '¿Quién realiza la evaluación de destrezas con criterio de desempeño?',
+        respuestaCorrecta: 'Docente en tutoría.'
+    },
+,
+    {
+        pregunta: 'Anulación: se genera cuando se elimina por completo el derecho.',
+        respuestaCorrecta: 'Verdadero.'
+    },
+,
+    {
+        pregunta: 'Características de los derechos humanos - "Están en constante evolución, a medida que se va ampliando su ámbito de ejercicio y protección", es decir, los derechos humanos son:',
+        respuestaCorrecta: 'Progresivos.'
+    },
+,
+    {
+        pregunta: 'Características de los derechos humanos - "Están relacionados entre sí, el avance de uno facilita el de los demás, y su privación afecta negativamente al resto", es decir, los derechos humanos son:',
+        respuestaCorrecta: 'Interdependientes e indivisibles.'
+    },
+   
+];
+
+function seleccionarRespuestaCorrecta(pregunta, respuestaCorrecta) {
+    // Encuentra la pregunta en la página
+    var elementosPregunta = Array.from(document.querySelectorAll('.qtext')).filter(function(elemento) {
+        return elemento.textContent.includes(pregunta);
+    });
+
+    // Si se encuentra la pregunta, selecciona la respuesta correcta
+    if (elementosPregunta.length > 0) {
+        var elementoPregunta = elementosPregunta[0];
+        var opciones = elementoPregunta.closest('.que').querySelectorAll('.answer input[type="radio"]');
+        opciones.forEach(function(opcion) {
+            var etiqueta = opcion.nextElementSibling;
+            if (etiqueta && etiqueta.textContent.includes(respuestaCorrecta)) {
+                opcion.click();
+            }
+        });
+    }
+}
+
+// Ejecuta la función para cada par de pregunta y respuesta
+preguntasYRespuestas.forEach(function(par) {
+    seleccionarRespuestaCorrecta(par.pregunta, par.respuestaCorrecta);
+});
+
